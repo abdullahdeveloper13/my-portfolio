@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import "./globals.css";
+export const metadata: Metadata = { title:"Abdullah Abdul Hameed — Full Stack Web & App Developer", description:"Production-ready web apps, SaaS platforms, mobile applications, AI systems and business software, from interface to deployment.", metadataBase:new URL("https://abdullahdeveloper13.vercel.app"), alternates:{ canonical:"/" }, openGraph:{ title:"Abdullah Abdul Hameed — Full Stack Web & App Developer", description:"Production-ready products from interface to deployment.", url:"https://abdullahdeveloper13.vercel.app", siteName:"Abdullah Abdul Hameed", type:"website" }, twitter:{ card:"summary_large_image", title:"Abdullah Abdul Hameed — Full Stack Web & App Developer", description:"Production-ready products from interface to deployment." } };
+export default function RootLayout({ children }:{children:React.ReactNode}) { return <html lang="en"><body>{children}</body></html>; }
