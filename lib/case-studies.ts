@@ -31,6 +31,93 @@ const base = {
 };
 
 export const caseStudies: Record<string, CaseStudy> = {
+  "nova-crm-ai": {
+    ...base,
+    slug: "nova-crm-ai",
+    title: "NovaCRM AI",
+    category: "Multi-tenant AI CRM Platform",
+    description:
+      "An enterprise-ready CRM with organization workspaces, contacts, companies, deal pipelines, tasks, activities, role-based team access, audit logs, notifications and an AI sales copilot.",
+    liveUrl: "https://nova-crm-ai-kappa.vercel.app/",
+    githubUrl: "https://github.com/abdullahdeveloper13/crm-project",
+    client: "Independent product",
+    role: "Full Stack Developer",
+    duration: "6 weeks",
+    overview:
+      "NovaCRM AI is a multi-tenant CRM built for sales teams that need one clear place to run their pipeline. Each organization gets its own workspace with a revenue dashboard, a Kanban deal board, contacts, companies, tasks, activities, role-based team management, audit logs and an AI sales copilot. The app is built with TanStack Start and TanStack Router on React 19, backed by Supabase and PostgreSQL with row-level security.",
+    steps: [
+      {
+        title: "Architecture & data model",
+        description: "Defined the multi-tenant architecture and a complete typed schema for the CRM domain.",
+        details: [
+          "Modeled 13 related tables: contacts, companies, deals, activities, tasks, notifications, files, audit logs, organizations, members, invitations, users and profiles.",
+          "Defined enums for roles, deal stages, activity kinds and notification state.",
+          "Chose TanStack Start + TanStack Router for typed file-based routing and SSR, with TanStack Query for server state.",
+        ],
+      },
+      {
+        title: "Multi-tenancy & security",
+        description: "Implemented organization isolation, row-level security and granular team permissions.",
+        details: [
+          "Added Supabase RLS policies so every CRM record is scoped to the user's organization.",
+          "Built tokenized invitations and seven roles from owner and admin to sales, support and viewer.",
+          "Added immutable audit logs and automatic updated-at triggers across CRM tables.",
+        ],
+      },
+      {
+        title: "CRM workspace & pipeline",
+        description: "Built the organization workspace with revenue dashboards and full CRM CRUD flows.",
+        details: [
+          "Revenue overview with pipeline value, won revenue, active deals, tracked contacts and open tasks.",
+          "Interactive five-stage Kanban pipeline with stage totals, list view, filters and probability sliders.",
+          "Contacts and companies directories with search, CSV import/export and lead-source attribution.",
+        ],
+      },
+      {
+        title: "AI sales copilot",
+        description: "Added AI-assisted workflows directly inside the CRM records.",
+        details: [
+          "Personalized outreach email drafting from contact and deal context.",
+          "Deal-closing strategy generation for active opportunities.",
+          "Meeting summary synthesis and BANT lead qualification scoring.",
+        ],
+      },
+      {
+        title: "Search, notifications & team ops",
+        description: "Connected the workspace with global search, notifications and cross-org analytics.",
+        details: [
+          "Cmd+K command palette searching contacts, companies, deals and tasks together.",
+          "Real-time notification center with unread counts and mark-all-as-read.",
+          "Cross-workspace dashboard aggregating analytics across every organization a user belongs to.",
+        ],
+      },
+      {
+        title: "Production hardening & launch",
+        description: "Fixed SSR/auth issues, tightened types and shipped a verified production build.",
+        details: [
+          "Resolved TanStack Router SSR hydration mismatches and the auth redirect loop.",
+          "Cleared TypeScript and ESLint errors, then verified with typecheck, lint and a production build.",
+          "Deployed to Vercel with Supabase production environment variables.",
+        ],
+      },
+    ],
+    technologies: [
+      "React 19", "TanStack Start", "TanStack Router", "TanStack Query", "TypeScript", "Vite", "Tailwind CSS", "shadcn/ui", "Radix UI", "Supabase", "PostgreSQL", "Zod", "Recharts", "Vercel",
+    ],
+    challenges: [
+      "Eliminating SSR hydration mismatches and auth redirect loops when combining TanStack Router with Supabase sessions.",
+      "Enforcing multi-tenant data isolation with row-level security across 13 related tables.",
+      "Keeping the Kanban pipeline, global search and AI copilot responsive as CRM data grows.",
+    ],
+    keyFeatures: [
+      "Multi-tenant organization workspaces & switcher",
+      "Interactive Kanban deal pipeline with stage totals",
+      "Contacts, companies, tasks & activity timeline",
+      "AI sales copilot for outreach, deal strategy & BANT",
+      "Granular RBAC with 7 roles & tokenized invitations",
+      "Audit logs, notifications & Cmd+K global search",
+    ],
+  },
   "skillforge-ai": {
     ...base,
     slug: "skillforge-ai",

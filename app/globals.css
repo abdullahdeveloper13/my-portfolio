@@ -616,3 +616,51 @@
     padding: 40px 24px;
   }
 }
+/* Landing page: link to the full projects index */
+.project-actions{display:flex;justify-content:center;margin-top:34px}
+.project-foot-links{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.section-head-side{display:flex;flex-direction:column;align-items:flex-start;gap:14px;max-width:370px}
+.section-head-side p{margin:0;color:#8e969a;font-size:13px;line-height:1.75}
+.projects-topbar{display:flex;justify-content:flex-start;margin-bottom:42px}
+.projects-index{padding-top:120px}
+@media(max-width:720px){.section-head-side{margin-top:23px}.projects-topbar{margin-bottom:30px}.projects-index{padding-top:100px}}
+
+/* NovaCRM AI project visual */
+.nova-screen{display:grid;grid-template-columns:92px 1fr;background:#0e1115;color:#e6eaee}
+.nova-rail{display:flex;flex-direction:column;gap:14px;padding:20px 12px;border-right:1px solid #ffffff12;background:#14171c;color:#6e787f;font-size:8px}
+.nova-rail b{display:grid;place-items:center;width:28px;height:28px;margin-bottom:10px;border:1px solid #2997ff88;border-radius:8px;background:#2997ff12;color:var(--blue);font-size:12px}
+.nova-rail span:first-of-type{color:#fff}
+.nova-main{display:flex;flex-direction:column;min-width:0;padding:22px}
+.nova-top{display:flex;align-items:center;gap:9px;padding-bottom:16px;border-bottom:1px solid #ffffff12}
+.nova-top span{font-size:16px;font-weight:800;letter-spacing:-.05em}
+.nova-top span i{margin-left:4px;color:var(--blue);font-family:'DM Mono';font-size:8px;font-style:normal;text-transform:uppercase}
+.nova-top small{margin-left:auto;color:#69747c;font-family:'DM Mono';font-size:7px;letter-spacing:.1em}
+.nova-top em{padding:4px 7px;border:1px solid #ffffff18;border-radius:4px;color:#8b969d;font-size:8px;font-style:normal}
+.nova-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}
+.nova-kpis div{padding:12px;border:1px solid #ffffff12;border-radius:7px;background:#ffffff04}
+.nova-kpis small{display:block;color:#68747c;font-family:'DM Mono';font-size:6.5px;letter-spacing:.08em}
+.nova-kpis b{display:block;margin:7px 0 3px;font-size:18px;letter-spacing:-.05em}
+.nova-kpis em{color:var(--green);font-size:7px;font-style:normal}
+.nova-pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:2px}
+.nova-pipeline div{min-height:76px;padding:9px;border:1px solid #ffffff10;border-radius:6px;background:#ffffff02}
+.nova-pipeline small{display:block;color:#6a757d;font-family:'DM Mono';font-size:6px;letter-spacing:.08em}
+.nova-pipeline b{display:block;margin:5px 0 7px;font-size:10px}
+.nova-pipeline span{display:block;height:17px;margin-top:5px;border:1px solid #2997ff33;border-radius:4px;background:#2997ff0f}
+.nova-pipeline span:last-child{width:78%;border-color:#ffffff14;background:#ffffff05}
+.nova-copilot{display:flex;align-items:center;gap:10px;margin-top:14px;padding:10px 12px;border:1px solid #2997ff33;border-radius:6px;background:linear-gradient(90deg,#2997ff12,transparent)}
+.nova-copilot small{color:var(--blue);font-family:'DM Mono';font-size:6.5px;letter-spacing:.1em}
+.nova-copilot span{color:#aab5bc;font-size:9px}
+
+@media(max-width:720px){
+  .nova-screen{grid-template-columns:64px 1fr}
+  .nova-rail{padding:15px 8px;gap:10px;font-size:7px}
+  .nova-main{padding:15px}
+  .nova-top span{font-size:13px}
+  .nova-top small{display:none}
+  .nova-kpis{grid-template-columns:1fr 1fr}
+  .nova-kpis div:last-child{display:none}
+  .nova-kpis b{font-size:15px}
+  .nova-pipeline{grid-template-columns:1fr 1fr}
+  .nova-pipeline div:nth-child(n+3){display:none}
+  .nova-copilot span{font-size:8px}
+}

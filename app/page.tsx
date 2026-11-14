@@ -1,4 +1,5 @@
 import Portfolio from "@/components/Portfolio";
+import ProjectsSection from "@/components/ProjectsSection";
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -10,4 +11,4 @@ const personSchema = {
   knowsAbout: ["Full-stack web development", "SaaS platforms", "React", "Next.js", "React Native", "AI integrations", "CMS development", "EMR systems", "E-commerce"],
 };
 
-export default function Home(){return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(personSchema)}} /><Portfolio/></>}
+export default function Home(){return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(personSchema)}} /><Portfolio projectsSection={<ProjectsSection/>}/></>}

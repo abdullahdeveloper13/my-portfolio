@@ -286,7 +286,7 @@ export default async function CaseStudyPage({
       <section className="case-study-section nav-section">
         <div className="wrap">
           <div className="project-nav">
-            <a href="/#projects" className="nav-card">
+            <a href="/projects" className="nav-card">
               <span className="nav-icon">←</span>
               <span className="nav-label">All Projects</span>
               <span className="nav-title">View all case studies</span>
@@ -308,7 +308,7 @@ export default async function CaseStudyPage({
             <p>Let&apos;s work together on your next project.</p>
             <div className="cta-buttons">
               <a href="/#contact" className="button blue">Get In Touch</a>
-              <a href="/#projects" className="button dark">View All Projects</a>
+              <a href="/projects" className="button dark">View All Projects</a>
             </div>
           </div>
         </div>
