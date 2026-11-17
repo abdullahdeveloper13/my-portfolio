@@ -4,6 +4,12 @@ export type CaseStudyStep = {
   details: string[];
 };
 
+export type DeploymentInfo = {
+  summary: string;
+  environment: string[];
+  issues: { problem: string; fix: string }[];
+};
+
 export type CaseStudy = {
   slug: string;
   title: string;
@@ -19,6 +25,7 @@ export type CaseStudy = {
   technologies: string[];
   challenges: string[];
   keyFeatures: string[];
+  deployment?: DeploymentInfo;
 };
 
 const base = {
@@ -31,6 +38,137 @@ const base = {
 };
 
 export const caseStudies: Record<string, CaseStudy> = {
+  "hiresphere-ai": {
+    ...base,
+    slug: "hiresphere-ai",
+    title: "HireSphere AI",
+    category: "Multi-role MERN Hiring Platform",
+    description:
+      "A production-style hiring platform where job seekers discover roles and track applications while employers, recruiters and admins manage companies, pipelines, interviews, moderation and real-time messaging.",
+    liveUrl: "https://mern-app-alpha-lyart.vercel.app",
+    githubUrl: "https://github.com/abdullahdeveloper13/MERN-App",
+    client: "Independent product",
+    role: "Full Stack Developer",
+    duration: "Full-stack build",
+    overview:
+      "HireSphere AI is a multi-role hiring platform built with the MERN stack (MongoDB, Express, React, Node.js). Job seekers can discover jobs, manage profiles and resumes, apply, save roles, track interviews and message employers. Employers and recruiters manage companies, publish jobs, review candidates, move applications through a hiring pipeline and schedule interviews, while administrators get moderation, analytics, audit logs and platform settings. The interface renders real API data only: empty states appear when the database has no content, and optional integrations report their status instead of showing simulated results.",
+    steps: [
+      {
+        title: "Product scoping & role model",
+        description: "Defined four roles and mapped every core hiring flow before writing code.",
+        details: [
+          "Mapped job seeker flows: profile, resume, discovery, saved roles, applications, interviews and messaging.",
+          "Mapped employer and recruiter flows: company profiles, job publishing, candidate review and pipeline stages.",
+          "Mapped admin capabilities: analytics, user activation, company verification, job moderation and audit logs.",
+        ],
+      },
+      {
+        title: "API & data layer",
+        description: "Built a versioned Express 5 API backed by MongoDB and Mongoose.",
+        details: [
+          "Exposed all application endpoints under /api/v1 with separated controllers, routes and services.",
+          "Modeled users, profiles, companies, jobs, applications, saved jobs, conversations, notifications and audit logs in Mongoose.",
+          "Added database migrations tracked in the _migrations collection and synchronized model indexes before seeding.",
+        ],
+      },
+      {
+        title: "Authentication & authorization",
+        description: "Implemented cookie-based JWT sessions with rotating refresh tokens and role checks.",
+        details: [
+          "Issued httpOnly access and refresh cookies, with refresh tokens rotated and stored hashed in MongoDB.",
+          "Verified the current database role on every protected request so role changes take effect immediately.",
+          "Added Google Identity Services ID-token login alongside email registration and verification.",
+        ],
+      },
+      {
+        title: "Job seeker workspace",
+        description: "Built the applicant experience from discovery through interview tracking.",
+        details: [
+          "Job search with filters and categories, plus saved roles and application history.",
+          "Profile, avatar and resume uploads through Cloudinary with authorized, signed resume downloads.",
+          "Applications with job-specific questions, withdrawal, status tracking and interview schedules.",
+        ],
+      },
+      {
+        title: "Employer & recruiter pipeline",
+        description: "Delivered company and job management with a full candidate pipeline.",
+        details: [
+          "Company profiles with logo upload, reviews and employer-side management.",
+          "Publish, edit, pause and close jobs, including per-job application questions.",
+          "Move candidates through reviewing → shortlisted → interview → offered → hired and schedule interviews.",
+          "Recruiters work within assigned companies and jobs alongside employers.",
+        ],
+      },
+      {
+        title: "Admin, real-time & quality",
+        description: "Wrapped the platform with moderation, live updates and production checks.",
+        details: [
+          "Admin analytics, moderation, recruiter assignment, audit logs and integration settings.",
+          "Socket.IO for new notifications, messages and application status changes.",
+          "Lint, Vitest/Supertest checks and production builds for both workspaces, plus Docker support for deployment.",
+        ],
+      },
+    ],
+    technologies: [
+      "React 19", "TypeScript", "Vite", "Tailwind CSS", "React Router", "TanStack Query", "React Hook Form", "Zod", "Framer Motion", "Node.js", "Express 5", "MongoDB", "Mongoose", "JWT", "Socket.IO", "Cloudinary", "Resend", "Google Identity", "Docker", "Vercel",
+    ],
+    challenges: [
+      "Keeping authenticated sessions alive across split client and API domains without breaking cookie security.",
+      "Preventing a burst of 401 responses when the short-lived access token expired during concurrent queries.",
+      "Running real-time notifications and messaging with Socket.IO on serverless hosting.",
+      "Enforcing up-to-date roles on every request so deactivated or demoted users lose access immediately.",
+    ],
+    keyFeatures: [
+      "Role-based workspaces for seekers, employers, recruiters and admins",
+      "Job discovery with filters, saved roles and application questions",
+      "Hiring pipeline from reviewing to hired with interview scheduling",
+      "Resume, avatar and company logo uploads via Cloudinary",
+      "Real-time notifications, messages and status updates",
+      "Admin analytics, moderation and audit logs",
+    ],
+    deployment: {
+      summary:
+        "The React client and the Express API are deployed separately on Vercel and share a MongoDB Atlas database. A release consists of building both npm workspaces, applying server migrations, seeding the admin account and then pointing the client at the deployed API with the production environment variables.",
+      environment: [
+        "Vercel — React client",
+        "Vercel — Express API",
+        "MongoDB Atlas",
+        "Cloudinary uploads",
+        "Resend / SMTP email",
+        "Google Identity Services",
+      ],
+      issues: [
+        {
+          problem: "The monorepo build failed because Vercel treated the repository root as a single app.",
+          fix: "Configured the client and server as separate projects/roots, kept npm workspaces and ran each workspace build script explicitly so both packages produced deployable output.",
+        },
+        {
+          problem: "The API worked locally, but every client request returned 404 after deployment.",
+          fix: "Set VITE_API_URL to the absolute API URL including /api/v1, because Vite inlines environment variables at build time and the local /api proxy does not exist in production.",
+        },
+        {
+          problem: "Login succeeded, but the session was dropped on every refresh in production.",
+          fix: "Set CLIENT_URL and CORS_ORIGINS to the deployed client origin and allowed cookies to use Secure + SameSite=None so the browser sends them across the client and API domains.",
+        },
+        {
+          problem: "The deployed API could not reach MongoDB Atlas.",
+          fix: "Allowed the serverless egress in Atlas network access and added the production connection string and database name to the deployment environment.",
+        },
+        {
+          problem: "Socket.IO kept reconnecting or falling back while serving live notifications.",
+          fix: "Allowed the deployed client origin on the socket server, enabled polling fallback and treated long-lived connections as best-effort on serverless hosting.",
+        },
+        {
+          problem: "Uploads and verification emails failed until the optional integrations were configured.",
+          fix: "Added Cloudinary and Resend credentials to production and made the API return clear configuration errors instead of simulating missing integrations.",
+        },
+        {
+          problem: "Access tokens expiring mid-session caused a burst of failed requests.",
+          fix: "Centralized refresh handling in the API client so a single refresh rotates the cookies and queues pending requests before retrying them.",
+        },
+      ],
+    },
+  },
   "nova-crm-ai": {
     ...base,
     slug: "nova-crm-ai",

@@ -257,6 +257,54 @@ export default async function CaseStudyPage({
         </div>
       </section>
 
+      {/* Deployment */}
+      {study.deployment && (
+        <section className="case-study-section deployment-section">
+          <div className="wrap">
+            <div className="section-header">
+              <span className="eyebrow">Deployment</span>
+              <h2>Shipping To<br />Production</h2>
+              <p>How the project was released and the real deployment issues that had to be solved.</p>
+            </div>
+
+            <div className="deployment-grid">
+              <div className="deployment-panel">
+                <h3>Release Overview</h3>
+                <p>{study.deployment.summary}</p>
+              </div>
+              <div className="deployment-panel">
+                <h3>Environment</h3>
+                <ul className="deployment-env">
+                  {study.deployment.environment.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {study.deployment.issues.length > 0 && (
+              <div className="deployment-issues-block">
+                <h3 className="deployment-subtitle">Deployment Issues &amp; Fixes</h3>
+                <div className="deployment-issues">
+                  {study.deployment.issues.map((item, i) => (
+                    <div className="deployment-issue" key={i}>
+                      <div className="issue-head">
+                        <span className="issue-number">{String(i + 1).padStart(2, "0")}</span>
+                        <h4>{item.problem}</h4>
+                      </div>
+                      <div className="issue-fix">
+                        <span>Fix</span>
+                        <p>{item.fix}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* Key Results */}
       {study.keyFeatures.length > 0 && (
         <section className="case-study-section results-section">

@@ -564,6 +564,135 @@
   flex-wrap: wrap;
 }
 
+/* Deployment */
+.deployment-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.deployment-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.deployment-panel h3 {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0 0 14px;
+}
+
+.deployment-panel p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text);
+  margin: 0;
+}
+
+.deployment-env {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.deployment-env li {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #a3a9ad;
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #0f1214;
+}
+
+.deployment-subtitle {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+
+.deployment-issues {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.deployment-issue {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 0.25s;
+}
+
+.deployment-issue:hover {
+  border-color: var(--blue);
+}
+
+.issue-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.issue-number {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--blue);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.issue-head h4 {
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.issue-fix {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.issue-fix span {
+  flex-shrink: 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1px solid color-mix(in srgb, var(--green) 40%, transparent);
+  border-radius: 999px;
+  padding: 3px 8px;
+}
+
+.issue-fix p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (max-width: 950px) {
+  .deployment-grid,
+  .deployment-issues {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Responsive */
 @media (max-width: 950px) {
   .case-study-header-content {
